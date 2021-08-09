@@ -1,2 +1,2 @@
 # mod-back
-Módulo backend
+Módulo backend com docker, node e mysql
