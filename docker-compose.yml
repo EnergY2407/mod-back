@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  mod-back-api:
+    container_name: mod-back-api
+    build: .
+    restart: 'no'
+    volumes:
+      - '.:/usr/src/app'
+    ports:
+      - '5000:5000'
+    networks:
+      - app
+    command: npm run dev
+  mod-back-db:
+    container_name: db
+    image: mysql
+    restart: 'no'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - '.data/mysql:/var/lib/mysql'
+    ports:
+      - '3307:3307'
+    networks:
+      - app
+    command: '--default-authentication-plugin=mysql_native_password'
+networks:
+  app:
+    driver: bridge
